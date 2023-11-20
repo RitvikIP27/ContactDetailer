@@ -1,5 +1,5 @@
-the template folder has all the html files
-app.py works the back-end
+the template folder has all the html files\n
+app.py works the back-end\n
 the static folder has the fixed/unchangeable things such as photos, database, stylesheet etc
 do not move the things for the code has been written accordingly
 in order to run the file, simply open a github terminal in the main repository and run the command
