@@ -5,18 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+        <link rel="stylesheet" href="/static/styles.css">
         <title> Login </title>
-        <script>
-            function showForm(formId) {
-                var forms = document.querySelectorAll('.form-group');
-                forms.forEach(function(form) {
-                    form.classList.add('hidden');
-                });
-
-                document.getElementById(formId).classList.remove('hidden');
-            }
-        </script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
         <style>
             body {
                 display: flex;
@@ -26,55 +16,39 @@
                 margin: 0;
                 background-color: #f0f0f0;
             }
-            #login-box {
-                background-color: #fff;
-                border-radius: 8px;
-                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-                padding: 20px;
-                width: 300px;
-                height: 530px;
-                text-align: center;
-            }
-            #login-options {
-                display: flex;
-                justify-content: space-around;
-                margin-bottom: 20px;
-            }
-            #login-options div {
-                cursor: pointer;
-                padding: 10px;
-                border-bottom: 2px solid #ccc;
-            }
-            .form-group {
-                margin-bottom: 15px;
-            }
-            .form-group input {
-                width: 100%;
-                padding: 10px;
-                margin-top: 5px;
-                box-sizing: border-box;
-            }
-            .form-group button {
-                width: 100%;
-                padding: 10px;
-                background-color: #007BFF;
-                color: #fff;
-                border: none;
-                border-radius: 4px;
-                cursor: pointer;
-            }
-            .hidden {
-                display: none;
-            }
-            input::-webkit-outer-spin-button,
-            input::-webkit-inner-spin-button {
-            display: none;
-            }
         </style>
+        <script>
+            function showForm(formId) {
+                var forms = document.querySelectorAll('.form-group');
+                forms.forEach(function(form) {
+                    form.classList.add('hidden');
+                });
+                document.getElementById(formId).classList.remove('hidden');
+            }
+            function submitForm() {
+                document.getElementById("login-form").submit();
+            }
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
     </head>
 
     <body>
-        <div id="login-box">
+        <div class = "sidebar">
+            <form action="/">
+                <input type = "submit" value = "Login home">
+            </form>
+            <form action="/showtable" method="post">
+                <input type = "submit" value = "All fundraisers">
+            </form>
+            <form action="/rankings" method="post">
+                <input type = "submit" value = "See rankings">
+            </form>
+            <form action="/contact" method="post">
+                <input type = "submit" value = "Contact us">
+            </form>
+        </div>
+
+        <div id="login-box" class = "content">
             <div id="login-options">
                 <div onclick="showForm('sign-in-group')">Sign In</div>
                 <div onclick="showForm('sign-up-group')">Sign Up</div>
@@ -83,23 +57,23 @@
             <form id="login-form" action="/savedata" method="post">
                 <div class="form-group" id="sign-in-group" style = "align-items: bottom; justify-content: center; margin: auto;">
                     <input type="text" name="username" placeholder="Username" required>
-                    <input type="password" name="password" placeholder="Password" required><p></p>
+                    <input type="password" name="password" placeholder="Password" id="pass" required>
                     {% if correctnot %}
                         <p> username or password is incorrect </p>
                     {% endif %}
-                    <button type="submit">Sign In</button>
-                    <br><p></p>
-                    <div class="col s12 m6 offset-m3 center-align">
-                        <a class="oauth-container btn darken-4 white black-text" href="/users/google-oauth/" style="text-transform:none">
-                            <div class="left">
-                                <img width="20px" style="margin-top:7px; margin-right:8px" alt="Google sign-in" 
-                                    src="/static/google.png" />
-                            </div>
-                            Login with Google
-                        </a>
-                    </div>
+                    <p></p>
+                    <button type="button" onclick="submitForm()">Sign In</button>
+                    <p></p>
+                    <hr><a class="oauth-container btn darken-4 white black-text" href=" " style="text-transform:none">
+                        <div class="col s12 m6 offset-m3 center-align">
+                                <div class="left">
+                                    <img width="20px" style="margin-top:7px; margin-right:8px" alt="Google sign-in" 
+                                        src="/static/google.png" />
+                                </div>
+                                Login with Google
+                        </div>
+                    </a>
                 </div>
-
                 <div class="form-group hidden" id="sign-up-group">
                     <input type="text" name="first_name" placeholder="First Name" required>
                     <input type="text" name="last_name" placeholder="Last Name" required>
@@ -119,10 +93,11 @@
                         <p>Passwords do not match</p>
                     {% endif %}
                     <p></p>
-                    <button type="submit">Sign Up</button>
+                    <button type="button" onclick="submitForm()">Sign Up</button>
                 </div>
             </form>
         </div>
+
     </body>
 </html>
 
