@@ -4,7 +4,18 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href = "/static/styles.css">
         <title> User page </title>
+        <style>
+            body {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 100vh;
+                margin: 0;
+                background-color: #f0f0f0;
+            }
+        </style>
         <script>
             function myFunction() {
                 var x = document.getElementById("myInput");
@@ -15,27 +26,27 @@
                 }
             }
         </script>
-        <style>
-            #bigdiv {
-                display: flex;
-                margin: auto;
-                vertical-align: center;
-                align-items: center; 
-                justify-content: center
-            }
-
-            #bigdiv div {
-                padding: auto;
-                margin: auto;
-                justify-content: center;
-            }
-        </style>
     </head>
     <body style="justify-content: center; vertical-align: center; padding-top: 10%">
-        <div id="bigdiv" style="display: flex; margin: auto; align-items: center; justify-content: center;">
+        <div class = "sidebar">
+            <form action="/">
+                <input type = "submit" value = "Login home">
+            </form>
+            <form action="/showtable" method="post">
+                <input type = "submit" value = "All fundraisers">
+            </form>
+            <form action="/rankings" method="post">
+                <input type = "submit" value = "See rankings">
+            </form>
+            <form action="/contact" method="post">
+                <input type = "submit" value = "Contact us">
+            </form>
+        </div>
+
+        <div id="bigdiv" class="content" style="display: flex; margin: auto; align-items: center; justify-content: center;">
             <div style = "display: inline-block">
                 <img alt="Pfp" src="/static/pfp.png">
-                <p> {{user}} </p>
+                <p style="text-align: center;"> {{user}} </p>
                 <input type="text" name="username" placeholder="Username" hidden>
             </div>
 
@@ -43,19 +54,19 @@
                 <form action="/editamount" method="post">
                     <div class="row">
                         <div class="col">
-                            <input type="text" class="form-control" placeholder="First name" value: {{fname}} disabled>
+                            <input type="text" class="form-control" disabled placeholder="{{fname}}">
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" placeholder="Last name" value: {{lname}} disabled>
+                            <input type="text" class="form-control" placeholder="{{lname}}" disabled>
                         </div>
                     </div>
                     <br>
                     <div class="row">
                         <div class="col">
-                            <input type="text" class="form-control" placeholder="Phone number" value: {{number}} disabled>
+                            <input type="text" class="form-control" placeholder="{{number}}" disabled>
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" placeholder="Email" value: {{email}} disabled>
+                            <input type="text" class="form-control" placeholder="{{email}}" disabled>
                         </div>
                     </div>
                     <br>
@@ -71,7 +82,7 @@
                     <div style="align-items: center;">
                         <div style = "display: flex; align-items: center; justify-content: center;">
                             <p style="display: inline-block; font-size: 24px; margin: 10px 1px;">₹</p>
-                            <input type="number" placeholder="Enter donation amount" name = "money" value: {{money}} style="display: inline-block; margin: 10px;" step="1000">
+                            <input type="number" placeholder="{{money}}" style="display: inline-block; margin: 10px;" step="1000">
                             <button type="submit">Save changes</button>
                             {% if changes %}
                             Changes updated
