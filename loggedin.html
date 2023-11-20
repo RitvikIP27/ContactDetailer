@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang = "en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <title> User page </title>
+        <script>
+            function myFunction() {
+                var x = document.getElementById("myInput");
+                if (x.type == "password") {
+                    x.type = "text";
+                } else {
+                    x.type = "password";
+                }
+            }
+        </script>
+        <style>
+            #bigdiv {
+                display: flex;
+                margin: auto;
+                vertical-align: center;
+                align-items: center; 
+                justify-content: center
+            }
+
+            #bigdiv div {
+                padding: auto;
+                margin: auto;
+                justify-content: center;
+            }
+        </style>
+    </head>
+    <body style="justify-content: center; vertical-align: center; padding-top: 10%">
+        <div id="bigdiv" style="display: flex; margin: auto; align-items: center; justify-content: center;">
+            <div style = "display: inline-block">
+                <img alt="Pfp" src="/static/pfp.png">
+                <p> {{user}} </p>
+                <input type="text" name="username" placeholder="Username" hidden>
+            </div>
+
+            <div style = "display: inline-block">
+                <form action="/editamount" method="post">
+                    <div class="row">
+                        <div class="col">
+                            <input type="text" class="form-control" placeholder="First name" value: {{fname}} disabled>
+                        </div>
+                        <div class="col">
+                            <input type="text" class="form-control" placeholder="Last name" value: {{lname}} disabled>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col">
+                            <input type="text" class="form-control" placeholder="Phone number" value: {{number}} disabled>
+                        </div>
+                        <div class="col">
+                            <input type="text" class="form-control" placeholder="Email" value: {{email}} disabled>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col">
+                            <input type="password" placeholder="Password" value: {{passwrd}} id="myInput" disabled>
+                        </div>
+                        <div class="col">
+                            <input type="checkbox" onclick = "myFunction()"> Show Password
+                        </div>
+                    </div>
+                    <br>
+                    <div style="align-items: center;">
+                        <div style = "display: flex; align-items: center; justify-content: center;">
+                            <p style="display: inline-block; font-size: 24px; margin: 10px 1px;">₹</p>
+                            <input type="number" placeholder="Enter donation amount" name = "money" value: {{money}} style="display: inline-block; margin: 10px;" step="1000">
+                            <button type="submit">Save changes</button>
+                            {% if changes %}
+                            Changes updated
+                            {% endif %}
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </body>
+</html>
+
