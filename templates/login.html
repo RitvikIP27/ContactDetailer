@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+        <link rel="stylesheet" href="/static/styles.css">
+        <title> Login </title>
+        <style>
+            body {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 100vh;
+                margin: 0;
+                background-color: #f0f0f0;
+            }
+        </style>
+        <script>
+            function showForm(formId) {
+                var forms = document.querySelectorAll('.form-group');
+                forms.forEach(function(form) {
+                    form.classList.add('hidden');
+                });
+                document.getElementById(formId).classList.remove('hidden');
+            }
+            function submitForm() {
+                document.getElementById("login-form").submit();
+            }
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+    </head>
+
+    <body>
+        <div class = "sidebar">
+            <form action="/">
+                <input type = "submit" value = "Login home">
+            </form>
+            <form action="/showtable" method="post">
+                <input type = "submit" value = "All fundraisers">
+            </form>
+            <form action="/rankings" method="post">
+                <input type = "submit" value = "See rankings">
+            </form>
+            <form action="/contact" method="post">
+                <input type = "submit" value = "Contact us">
+            </form>
+        </div>
+
+        <div id="login-box" class = "content">
+            <div id="login-options">
+                <div onclick="showForm('sign-in-group')">Sign In</div>
+                <div onclick="showForm('sign-up-group')">Sign Up</div>
+            </div>
+
+            <form id="login-form" action="/savedata" method="post">
+                <div class="form-group" id="sign-in-group" style = "align-items: bottom; justify-content: center; margin: auto;">
+                    <input type="text" name="username" placeholder="Username" required>
+                    <input type="password" name="password" placeholder="Password" id="pass" required>
+                    {% if correctnot %}
+                        <p> username or password is incorrect </p>
+                    {% endif %}
+                    <p></p>
+                    <button type="button" onclick="submitForm()">Sign In</button>
+                    <p></p>
+                    <hr><a class="oauth-container btn darken-4 white black-text" href=" " style="text-transform:none">
+                        <div class="col s12 m6 offset-m3 center-align">
+                                <div class="left">
+                                    <img width="20px" style="margin-top:7px; margin-right:8px" alt="Google sign-in" 
+                                        src="/static/google.png" />
+                                </div>
+                                Login with Google
+                        </div>
+                    </a>
+                </div>
+                <div class="form-group hidden" id="sign-up-group">
+                    <input type="text" name="first_name" placeholder="First Name" required>
+                    <input type="text" name="last_name" placeholder="Last Name" required>
+                    {% if emailvernot %}
+                        <input type="text" name="email" placeholder="Email" class="is-invalid" required>
+                    {% else %}
+                        <input type="text" name="email" placeholder="Email" required>
+                    {% endif %}
+                    <input type="number" name="numb" placeholder="Phone number" required>
+                    <input type="text" name="new_username" placeholder="Username" required>
+                    {% if userex %}
+                        <p> Username already exists </p>
+                    {% endif %}
+                    <input type="password" name="new_password" placeholder="Password" required>
+                    <input type="password" name="confirm_password" placeholder="Confirm Password" required>
+                    {% if passmatchnot %}
+                        <p>Passwords do not match</p>
+                    {% endif %}
+                    <p></p>
+                    <button type="button" onclick="submitForm()">Sign Up</button>
+                </div>
+            </form>
+        </div>
+
+    </body>
+</html>
+
