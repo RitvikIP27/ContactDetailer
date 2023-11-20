@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<!-- SEARCH about email tag in HTML  -->
+<body>
+    <Header><h2>Contact Support</h2></Header>
+    <main>
+    <form="/action.php">
+        <!-- This the file in backend where the data will be stored here the php file is opened to store any daata entered here -->
+        <p><big>Name:</big></p><input type="Text" placeholder="Name in capitals">
+        <p><big>Contact </big></p><input type="number" PLACEHOLDER="Phonenumber">
+        <p><big>email</big></p><input type="email" placeholder="Enter Email here">
+        <p><big>Specific inquiry/Topic</big></p><input type="radio" value="Collaboration" name="class" id="101">Collaboration
+        <input type="radio" value="Work/Freelance" name="class" id="102">Work/freelance 
+        <input type="radio" value="Development/Advisory/Mentorship">Development/Advisory/Mentorship
+        <hr>
+        <p>Place of living</p><select name="Your Place" id="city">
+            <option value="Delhi">Delhi </option>
+            <option value="Mumbai">Bombay</option>
+            <option value="Banglore">bANGLORE</option>
+            <Option value="Kolkata">Calcutta</Option>
+        </select>
+        <br>
+        </form></main>
+        <footer>
+            <P><big>Feedback</big></P>
+
+            <textarea name="Form and Overall Feedback" placeholder="Type here" row="200" column="500"></textarea>
+        </footer>
+
+
+    </form>
+</body>
+</html>
