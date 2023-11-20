@@ -1,0 +1,135 @@
+#login-box {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 300px;
+    height: 530px;
+    text-align: center;
+}
+#login-options {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+#login-options div {
+    cursor: pointer;
+    padding: 10px;
+    border-bottom: 2px solid #ccc;
+}
+.form-group {
+    margin-bottom: 15px;
+}
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    box-sizing: border-box;
+}
+.form-group button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.hidden {
+    display: none;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+display: none;
+}
+.sidebar {
+height: 100%;
+width: 200px;
+position: fixed;
+left: 0;
+background-color: #111;
+padding-top: 20px;
+}
+
+.sidebar form {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.sidebar input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.sidebar input[type="submit"]:hover {
+    background-color: #555;
+}
+
+.content {
+    margin-left: 200px; /* Adjust this value based on the width of your sidebar */
+    padding: 16px;
+}
+#bigdiv {
+    display: flex;
+    margin: auto;
+    vertical-align: center;
+    align-items: center; 
+    justify-content: center
+}
+
+#bigdiv div {
+    padding: auto;
+    margin: auto;
+    justify-content: center;
+}
+#table1 {
+    padding: 10px;
+    margin: auto;
+    border: 1px black;
+    float: left;
+}
+
+
+.ranking {
+    width: 60%;
+    margin: 20px auto;
+    background-color: #f3d5d5;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.rank-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Align items vertically */
+    padding: 15px;
+    border-bottom: 2px solid #01070b;
+}
+
+.rank {
+    font-size: 24px;
+    font-weight: bold;
+    color: #010508;
+    margin-right: 10px;
+}
+
+.name {
+    flex-grow: 1;
+    margin-left: 20px;
+    font-size: 18px;
+    color: #000000;
+}
+
+.avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #030404;
+}
