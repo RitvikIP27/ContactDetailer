@@ -77,11 +77,11 @@
                 <div class="form-group hidden" id="sign-up-group">
                     <input type="text" name="first_name" placeholder="First Name" required>
                     <input type="text" name="last_name" placeholder="Last Name" required>
-                    {% if emailvernot %}
-                        <input type="text" name="email" placeholder="Email" class="is-invalid" required>
-                    {% else %}
-                        <input type="text" name="email" placeholder="Email" required>
-                    {% endif %}
+                    <!-- {% if emailvernot %}
+                        <input type="email" name="email" placeholder="Email" class="is-invalid" required>
+                    {% else %} 
+                    {% endif %} -->
+                    <input type="text" name="email" placeholder="Email" required>
                     <input type="number" name="numb" placeholder="Phone number" required>
                     <input type="text" name="new_username" placeholder="Username" required>
                     {% if userex %}
