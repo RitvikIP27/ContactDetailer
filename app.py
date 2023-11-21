@@ -1,7 +1,7 @@
 # modules
 from flask import Flask, render_template, request, redirect, url_for
 from verify_email import verify_email
-from flask_mail import Mail, Message
+# from flask_mail import Mail, Message
 from cs50 import SQL
 
 app = Flask(__name__)
@@ -30,22 +30,22 @@ def index():
 @app.route("/savedata", methods = ["post"])
 def savedata():
     data = db.execute("select * from table1;")
-    if request.form.get("gotHelp"):
+    if request.form.get("first_name"):
         first_name = request.form.get("first_name").upper()
         last_name = request.form.get("last_name").upper()
         email = request.form.get("email")
         numb = request.form.get("numb")
         new_username = request.form.get("new_username").upper()
-        new_pass = request.form.get("new_pass")
-        confirm_pass = request.form.get("confirm_pass")
+        new_pass = request.form.get("new_password")
+        confirm_pass = request.form.get("confirm_password")
         if new_pass == confirm_pass:
             if check_user(new_username):
-                if email_verifier(email):
+                # if email_verifier(email):
                     db.execute("insert into table1 values (?, ?, ?, ?, ?, ?, 0)", first_name, last_name, email, numb, new_username, new_pass)
                     data = db.execute("select * from table1;")
                     return render_template("loggedin.html", fname = first_name, lname = last_name, email = email, number = numb, user = new_username, passwrd = new_pass)
-                else:
-                    return render_template("login.html", emailvernot = True)
+                # else:
+                #     return render_template("login.html", emailvernot = True)
             else:
                 return render_template("login.html", userex = True)
         else:
@@ -64,13 +64,15 @@ def savedata():
 @app.route("/editamount", methods = ["post"])
 def amount():
     data = db.execute("select * from table1;")
-    if request.form.get("money"):
-        money = request.form.get("money")
-        user = request.form.get("username")
-        for i in data:
-            if i["username"] == user:
+    money = request.form.get("money")
+    user = request.form.get("username")
+    for i in data:
+        if i["username"] == user:
+            if i["money"] != money:
                 db.execute("UPDATE table1 SET money = ? WHERE username = ?", money, user)
                 return render_template("loggedin.html", fname = i["fname"], lname = i["lname"], email = i["email"], number = i["numb"], user = i["username"], passwrd = i["pass"], money = money, edited = True)
+            # else:
+    return render_template("loggedin.html", fname = i["fname"], lname = i["lname"], email = i["email"], number = i["numb"], user = i["username"], passwrd = i["pass"], money = money)
 
 @app.route("/showtable", methods = ["post"])
 def table():
