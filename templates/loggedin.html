@@ -54,7 +54,7 @@
                 <form action="/editamount" method="post">
                     <div class="row">
                         <div class="col">
-                            <input type="text" class="form-control" disabled placeholder="{{fname}}">
+                            <input type="text" class="form-control" placeholder="{{fname}}" disabled>
                         </div>
                         <div class="col">
                             <input type="text" class="form-control" placeholder="{{lname}}" disabled>
@@ -72,7 +72,7 @@
                     <br>
                     <div class="row">
                         <div class="col">
-                            <input type="password" placeholder="Password" value: {{passwrd}} id="myInput" disabled>
+                            <input type="password" value="{{passwrd}}" id="myInput" disabled>
                         </div>
                         <div class="col">
                             <input type="checkbox" onclick = "myFunction()"> Show Password
@@ -82,9 +82,9 @@
                     <div style="align-items: center;">
                         <div style = "display: flex; align-items: center; justify-content: center;">
                             <p style="display: inline-block; font-size: 24px; margin: 10px 1px;">₹</p>
-                            <input type="number" placeholder="{{money}}" style="display: inline-block; margin: 10px;" step="1000">
+                            <input type="number" name = "money" value="{{money}}" style="display: inline-block; margin: 10px;">
                             <button type="submit">Save changes</button>
-                            {% if changes %}
+                            {% if edited %}
                             Changes updated
                             {% endif %}
                         </div>
