@@ -163,6 +163,28 @@ div.row{
 div.content{
    background-color: rgb(41, 49, 167);
 }
+*{
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    padding:0;
+    margin: 0; 
+}
+
+body{
+    background-image:url("moon.jpg") ;
+    background-size: cover;
+}
+
+button{
+    background-color: rgb(255, 142, 4);
+}
+
+input {
+    background-color: rgb(188, 3, 182);
+}
+
+div.form-group{
+    color:yellow
+}
 
 
 
