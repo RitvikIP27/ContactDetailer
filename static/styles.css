@@ -171,4 +171,38 @@ div.row{
 div.content{
    background-color: rgb(41, 49, 167);
 }
+*{
+    font-family:Arial, Helvetica, sans-serif;
+    padding:0;
+    margin: 0;
+
+}
+ body{
+    background-image: url("OIP\ \(1\).jpg");
+    backface-visibility: 0.5;
+    color: antiquewhite;
+    
+ }
+ #table1{
+    background-color: lightgreen;
+    color:black;
+    opacity: 0.7;
+    
+
+}
+#th{
+   background: yellow;
+   font-size:x-large;
+   text-decoration: rgb(253, 34, 5)underline;
+   font-weight: 900;
+
+}
+#td{
+   font-weight: 600;
+   text-decoration: none;
+   background-color: rgb(6, 6, 179);
+
+   
+}
+
  
