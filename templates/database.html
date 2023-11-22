@@ -7,19 +7,14 @@
         <link rel="stylesheet" href = "/static/styles.css">
         <title> See users </title>
         <script>
-            document.getElementById('searchInput').addEventListener('input', function() {
-                searchTable();
-            });
-        
-            function searchTable() {
+            function myFunction() {
                 var input, filter, table, tr, td, i, txtValue;
                 input = document.getElementById('searchInput');
                 filter = input.value.toUpperCase();
                 table = document.getElementById('table1');
                 tr = table.getElementsByTagName('tr');
-        
-                for (i = 1; i < tr.length; i++) { // Start loop from 1 to skip the header row
-                    td = tr[i].getElementsByTagName('td')[0]; // Assuming the name is in the first column
+                for (i = 0; i < tr.length; i++) {
+                    td = tr[i].getElementsByTagName('td')[0];
                     if (td) {
                         txtValue = td.textContent || td.innerText;
                         if (txtValue.toUpperCase().indexOf(filter) > -1) {
@@ -29,8 +24,16 @@
                         }
                     }
                 }
-            }
+            };
         </script>
+        <style>
+            th{
+                background: red;
+                font-size:x-large;
+                text-decoration: white underline;
+                font-size: 20px;
+            }
+        </style>
     </head>
     
     <body>
@@ -50,14 +53,15 @@
         </div>
 
         <div class="content">
-            <input type="text" id="searchInput" placeholder="Search by name">
+            <p><caption> List of registered fundraisers </caption></p>
+            <input type="text" id="searchInput" placeholder="Search by name" oninput="myFunction()"><p></p>
             <table id="table1" class="table table-striped caption-top">
-                <caption> List of registered fundraisers </caption>
                 <tr>
                     <th>Name</th>
-                    <th>phone number</th>
+                    <th>Phone number</th>
                     <th>Email</th>
                     <th>Amount donated</th>
+                    <th>Social Media</th>
                 </tr>
     
                 {% for row in data %}
@@ -66,6 +70,7 @@
                     <td> {{ row["numb"] }} </td>
                     <td> {{ row["email"] }} </td>
                     <td> {{ row["money"] }} </td>
+                    <td><a>  </a></td>
                 </tr>
                 {% endfor %}
             </table>
