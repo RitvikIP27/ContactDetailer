@@ -49,7 +49,7 @@ def savedata():
             else:
                 return render_template("login.html", userex = True)
         else:
-            return return_template("login.html", passmatchnot = True)
+            return render_template("login.html", passmatchnot = True)
     else:
         user = request.form.get("username").upper()
         passwrd = request.form.get("password")
@@ -60,24 +60,28 @@ def savedata():
         else:
             return render_template("login.html", correctnot = True)
 
-
 @app.route("/editamount", methods = ["post"])
 def amount():
     data = db.execute("select * from table1;")
-    money = request.form.get("money")
     user = request.form.get("username")
-    for i in data:
-        if i["username"] == user:
-            if i["money"] != money:
+    if request.form.get("money"):
+        money = request.form.get("money")
+        for i in data:
+            if i["username"] == user:
                 db.execute("UPDATE table1 SET money = ? WHERE username = ?", money, user)
                 return render_template("loggedin.html", fname = i["fname"], lname = i["lname"], email = i["email"], number = i["numb"], user = i["username"], passwrd = i["pass"], money = money, edited = True)
-            # else:
-    return render_template("loggedin.html", fname = i["fname"], lname = i["lname"], email = i["email"], number = i["numb"], user = i["username"], passwrd = i["pass"], money = money)
+    if request.form.get("social"):
+        social = request.form.get("social")
+        social = f"https://www.instagram.com/{social}/"
+        for i in data:
+            if i["username"] == user:
+                db.execute("UPDATE table1 SET social = ? WHERE username = ?", social, user)
+                return render_template("loggedin.html", fname = i["fname"], lname = i["lname"], email = i["email"], number = i["numb"], user = i["username"], passwrd = i["pass"], money = i["money"], social = social)
+    return render_template("loggedin.html", fname = i["fname"], lname = i["lname"], email = i["email"], number = i["numb"], user = i["username"], passwrd = i["pass"], money = i["money"], social = i["social"])
 
 @app.route("/showtable", methods = ["post"])
 def table():
-    return render_template("database.html", data = db.execute("select * from table1 order by fname, lname;")
-)
+    return render_template("database.html", data = db.execute("select * from table1 order by fname, lname;"))
 
 @app.route("/contact", methods = ["post"])
 def contact_page():
@@ -91,7 +95,12 @@ def rankingspage():
     n3 = data[2]["fname"] + " " + data[2]["lname"]
     n4 = data[3]["fname"] + " " + data[3]["lname"]
     n5 = data[4]["fname"] + " " + data[4]["lname"]
-    return render_template("solution.html", first = n1, second = n2, third = n3, fourth = n4, fifth = n5)
+    m1 = data[0]["money"]
+    m2 = data[1]["money"]
+    m3 = data[2]["money"]
+    m4 = data[3]["money"]
+    m5 = data[4]["money"]
+    return render_template("solution.html", first = n1, first_m = m1, second = n2, second_m = m2, third = n3, third_m = m3, fourth = n4, fourth_m = m4, fifth = n5, fifth_m = m5)
 
 @app.route("/submitform", methods = ["post"])
 def submitform():
